@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option csharp_namespace = "Grpc.services";
+option java_package = "com.mConstruct.protobuf";
+
+enum K2Role {
+    K2_NO_ROLE = 0;
+    JC_CONSTRUCTION_LEAD = 1;//IL
+    JP_ENGINEER = 2; //FE
+    JP_QUALITY_ENGINEER = 3;//QE
+}
+
+message JioPoint{
+    string jpName = 1;
+    string jpCode = 2;
+    string jpID = 3;
+    string cityName = 4;
+    string cityCode = 5;
+    string stateName = 6;
+    string stateCode = 7;
+}

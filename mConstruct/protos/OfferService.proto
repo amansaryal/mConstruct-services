@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+import "protos/Common.proto";
+import "protos/OfferData.proto";
+option csharp_namespace = "Grpc.services";
+option java_package = "com.mConstruct.protobuf";
+
+service Offer{
+	rpc GetPossibleSplitterOffers (OffersRequest) returns (PossibleOffersResponse);
+	rpc GetPossibleFeederOffers (OffersRequest) returns (PossibleOffersResponse);
+	rpc GetSplitterPossibleOfferSummary (SplitterPossibleOfferSummaryRequest) returns (OfferSummary);
+	rpc GetFeederPossibleOfferSummary (FeederPossibleOfferSummaryRequest) returns (OfferSummary);
+	rpc CreateSplitterOffer (CreateSplitterOfferRequest) returns (OfferDetails);
+	rpc CreateFeederOffer (CreateFeederOfferRequest) returns (OfferDetails);
+
+	rpc GetSplitterOffers (OffersRequest) returns (OffersResponse);
+	rpc GetFeederOffers (OffersRequest) returns (OffersResponse);
+	rpc GetOfferSummary (OfferSummaryRequest) returns (OfferSummary);
+
+	rpc GetGeoDataForOfferSubTasks (GeoDataRequest) returns (GeoDataResponse);
+
+	rpc AcceptOffer (AcceptOfferRequest) returns (Response);
+
+}
+
+message OffersRequest{
+	string username = 1;
+	string fsaID = 2;
+}
+
+message PossibleOffersResponse{
+	repeated PossibleOffer possibleOffers = 1;
+}
+
+message OffersResponse{
+	repeated OfferData offers = 1;
+}
+
+message SplitterPossibleOfferSummaryRequest{
+	string username  = 1;
+	string taskID = 2;
+	SplitterPort splitterPort = 3;
+}
+
+message FeederPossibleOfferSummaryRequest{
+	string username  = 1;
+	string taskID = 2;
+}
+
+message OfferSummaryRequest{
+	string username  = 1;
+	string offerCode = 2;
+}
+
+message CreateSplitterOfferRequest{
+	string username = 1;
+	string taskID = 2;
+	string fsaID = 3;
+	SplitterPort splitterPort = 4;
+}
+
+message CreateFeederOfferRequest{
+	string username = 1;
+	string taskID = 2;
+	string fsaID = 3;
+}
+
+message OfferDetails{
+	string offerCode = 1;
+	string taskID = 2;
+	OfferCategory category= 3;
+}
+
+message AcceptOfferRequest{
+	string username = 1;
+	string offerCode = 2;
+}
+
+message GeoDataRequest{
+	string username = 1;
+	repeated TaskWrapper layerWiseTaskList = 2;
+}
+message GeoDataResponse{
+	repeated GeoDataWrapper geoDataList = 1;
+}

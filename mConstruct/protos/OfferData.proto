@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+import "protos/Common.proto";
+import "protos/TaskData.proto";
+import "protos/QCData.proto";
+option csharp_namespace = "Grpc.services";
+option java_package = "com.mConstruct.protobuf";
+
+
+enum OfferCategory{
+    NO_CATEGORY = 0;
+    SPLITTER = 1;
+    FEEDER = 2;
+}
+
+enum SplitterType{
+    S2 = 0;
+    S1 = 1;
+}
+
+enum FeederNumber{
+    Feeder1 = 0;
+    Feeder2 = 1;
+}
+
+enum SplitterPort{
+	NO_PORT = 0;
+    IN_1 = 1;
+    IN_2 = 2;
+	ALL = 3;
+}
+
+message PossibleOffer{
+    OfferCategory offerCategory = 1;
+    string taskId = 2;
+    string taskNEID = 3;
+    string dsaName = 4;
+    string dsaID = 5;
+    string fsaName = 6;
+    string fsaID = 7;
+    string jpName = 8;
+    string jpID = 9;
+    int32 totalTasksCount = 10;
+    int32 completedTasksCount = 11;
+    int32 pendingTasksCount = 12;
+    oneof identifier{
+        SplitterType splitterType = 13;
+        FeederNumber feederNumber = 14;
+    }
+}
+
+
+message OfferData{
+    string offerCode = 1;
+    string fsaName = 2;
+    string fsaID = 3;
+    string jpName = 4;
+    string jpID = 5;
+    int32 totalTasksCount = 6;
+    OfferCategory offerCategory = 7;
+    oneof identifier{
+        SplitterType splitterType = 9;
+        FeederNumber feederNumber = 10;
+    }
+    string taskID = 11;
+}
+
+message OfferSummary{
+    string offerCode = 1;
+    LayerSummary  equipmentSummary = 2;
+    LayerSummary  transmediaSummary = 3;
+    LayerSummary  structureSummary = 4;
+    LayerSummary  spanSummary = 5;
+}
+
+message LayerSummary{
+    Layer layer = 1;
+    double totalDesignValue = 2;
+    double totalActualValue = 3;
+    string uom = 4;
+    repeated TaskSnapshot taskList = 5;
+    QualityCheckpointSnippet qualityCheckpoints = 6;
+}
+
+message TaskWrapper{
+    Layer layer = 1;
+    repeated string taskNEIDs = 2;
+}
+
+message GeoDataWrapper{
+    Layer layer = 1;
+    string esriGeometryString = 2;
+    string taskNEID = 3;
+}

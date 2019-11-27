@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+import "protos/Common.proto";
+import "protos/QCData.proto";
+import "protos/TaskData.proto";
+option csharp_namespace = "Grpc.services";
+option java_package = "com.mConstruct.protobuf";
+
+service QC{
+	rpc GetQualityCheckpoints (QCRequest) returns (QCResponse);
+	rpc SaveQualityCheckpoints (SaveQCRequest) returns (Response);
+
+	rpc GetQCHistory (QCHistoryRequest) returns (TaskHistory);
+}
+
+
+message QCRequest{
+	string username = 1;
+	string taskID = 2;
+	Layer layer = 3;
+}
+
+message QCResponse{
+	string taskID = 1;
+	Layer layer = 2;
+	repeated QualityCheckpoint qualityCheckpoints = 3;
+	oneof isApproved {
+		bool feApproved = 4;
+		bool qeApproved = 5;
+		bool ilApproved = 6;
+	}
+}
+
+message SaveQCRequest{
+	string username = 1;
+	string taskID = 2;
+	Layer layer = 3;
+	repeated QualityCheckpoint qualityCheckpoints = 4;
+	oneof isApproved {
+		bool feApproved = 5;
+		bool qeApproved = 6;
+		bool ilApproved = 7;
+	}
+}
+
+message QCHistoryRequest{
+	string username = 1;
+	string taskID = 2;
+	string questionID = 3;
+	Layer layer = 4;
+}
+

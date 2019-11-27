@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "protos/SessionService.proto";
+import "protos/DashboardData.proto";
+option csharp_namespace = "Grpc.services";
+option java_package = "com.mConstruct.protobuf";
+
+service Dashboard{
+	rpc GetDashboardData (DashboardDataRequest) returns (DashboardData);
+}
+
+message DashboardDataRequest{
+	string username = 1;
+	Role role = 2;
+	string jpID = 3;
+}
+
+
+
+

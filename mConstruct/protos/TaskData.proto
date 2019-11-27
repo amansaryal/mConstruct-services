@@ -1,0 +1,142 @@
+syntax = "proto3";
+
+import "protos/Common.proto";
+import "protos/K2Data.proto";
+import "protos/SessionService.proto";
+option csharp_namespace = "Grpc.services";
+option java_package = "com.mConstruct.protobuf";
+
+//Task snapshot : Contains minimum required info to identify a task
+//TaskData : Comprehensive version of TaskSnapshot, pulls in data from task's feature layer and taskmaster
+
+enum TaskType {
+    NO_TYPE = 0;
+    CIVIL_UG = 1;
+    CIVIL_NON_UG = 2;
+    ODN = 3;
+    MDU = 4;
+}
+
+enum Status{
+    ASSIGNED = 0;
+    IN_PROGRESS = 1;
+    COMPLETED = 2;
+    REJECTED = 3;
+    REWORK = 4;
+}
+
+message TaskSnapshot{
+    string taskId = 1;
+    string taskNEID = 2;
+    Status status = 3;
+    string contractorID = 4;
+    string contractorName = 5;
+    string remarks = 6;
+    Role pendingWith = 7;
+    K2Role k2Role = 8; //??
+    bool rowRequired = 9;
+    string dsaName = 10;
+    string dsaID = 11;
+    string fsaName = 12;
+    string fsaID = 13;
+    string jpName = 14;
+    string jpID = 15;
+    Layer layer = 16;
+    TaskType taskType = 17;
+}
+
+message ODNTasks{
+    TaskType taskType = 1;
+    repeated TaskSnapshot taskList = 2;
+}
+
+message CivilUGTasks{
+    TaskType taskType = 1;
+    repeated TaskSnapshot taskList = 2;
+}
+
+message CivilNonUGTasks{
+    TaskType taskType = 1;
+    repeated TaskSnapshot taskList = 2;
+}
+
+message MDUTasks{
+    TaskType taskType = 1;
+    repeated TaskSnapshot taskList = 2;
+}
+
+message EquipmentTasks {
+    ODNTasks odnTasks = 1;
+}
+message SpanTasks {
+    CivilUGTasks civilUGTasks = 1;
+    CivilNonUGTasks civilNonUGTasks = 2;
+}
+message StructureTasks {
+    CivilUGTasks civilUGTasks = 1;
+    CivilNonUGTasks civilNonUGTasks = 2;
+}
+message TransmediaTasks {
+    ODNTasks odnTasks = 1;
+}
+message TransmediaMDUTasks {
+    MDUTasks mduTasks = 1;
+}
+
+message EquipmentDataFields{
+    enum OTDRStatus{
+        NOT_DONE = 0;
+        EAST_DONE = 1;
+        WEST_DONE = 2;
+        EAST_WEST_DONE = 3;
+    }
+    int64 objectID = 1;
+    TaskSnapshot taskSnapshot = 2;
+    string feederNumber = 3;
+    OTDRStatus otdrStatus = 4;
+}
+
+message SpanDataFields{
+    int64 objectID = 1;
+    TaskSnapshot taskSnapshot = 2;
+}
+
+message StructureDataFields{
+    int64 objectID = 1;
+    TaskSnapshot taskSnapshot = 2;
+}
+
+message TransmediaDataFields{
+    int64 objectID = 1;
+    TaskSnapshot taskSnapshot = 2;
+}
+
+message TransmediaMDUDataFields{
+    int64 objectID = 1;
+    TaskSnapshot taskSnapshot = 2;
+}
+
+
+message TaskData{
+    string esriGeometryString = 1;
+    oneof DataFieldsObject{
+        EquipmentDataFields equipmentAttributes = 2;
+        SpanDataFields spanAttributes = 3;
+        StructureDataFields structureAttributes = 4;
+        TransmediaDataFields transmediaAttributes = 5;
+        TransmediaMDUDataFields transmediaMDUAttributes = 6;
+    }
+}
+
+message HistorySnippet{
+    Status status = 1;
+    string updateDate = 2; //date type
+    string updatedBy_User = 3;
+    Role updatedBy_Role = 4;
+    string remarks = 5;
+}
+
+message TaskHistory{
+    string taskID = 1;
+    HistorySnippet historySnippet= 2;
+}

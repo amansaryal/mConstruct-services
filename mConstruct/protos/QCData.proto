@@ -1,0 +1,52 @@
+syntax = "proto3";
+import "protos/Common.proto";
+option csharp_namespace = "Grpc.services";
+option java_package = "com.mConstruct.protobuf";
+
+enum FEResponse{
+    FE_NONE = 0;
+    FE_OK = 1;
+    CONDITIONAL_OK = 2;
+}
+
+enum QEResponse{
+    QE_NONE = 0;
+    QE_OK = 1;
+    QE_REJECT = 2;
+}
+
+enum ILResponse{
+    IL_NONE = 0;
+    IL_OK = 1;
+    IL_REJECT = 2;
+}
+
+enum Label{
+    NO_LABEL = 0;
+    NCR = 1;
+    FOR = 2;
+}
+
+message RejectionReason{
+    int32 id = 1;
+    string description = 2;
+    bool isAReason = 3;
+}
+
+message QualityCheckpoint{
+    string id = 1;
+    string description = 2;
+    FEResponse feResponse= 3;
+    QEResponse qeResponse= 4;
+    ILResponse ilResponse = 5;
+    Label label = 6;
+    string feConditionalRemark = 7;
+    repeated RejectionReason reasonsForRejection = 8;
+    Layer layer = 9;
+}
+
+message QualityCheckpointSnippet{
+    string id = 1;
+    string description = 2;
+    Layer layer= 3;
+}

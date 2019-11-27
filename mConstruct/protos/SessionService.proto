@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+import "protos/Common.proto";
+option csharp_namespace = "Grpc.services";
+option java_package = "com.mConstruct.protobuf";
+
+service Session{
+	rpc Login (LoginRequest) returns (UserSession);
+	rpc Logout (LogoutRequest) returns (Response);
+}
+
+enum Appname{
+	NONAME = 0;
+	MCONSTRUCT = 1;
+}
+
+enum Role{
+	NO_ROLE = 0;
+	FIELD_ENGINEER = 1;
+	QUALITY_ENGINEER = 2;
+	INFRA_LEAD = 3;
+}
+
+message LoginRequest{
+	string username = 1;
+	string password = 2;
+	Appname appName = 3;
+	string imei = 4;
+	string ipAddress = 5;
+}
+
+message UserSession{
+	string token = 1;
+	repeated Role roles = 2;
+	string appVersion = 3;
+}
+
+message LogoutRequest{
+	string username = 1;
+	Appname appName = 2;
+}
+

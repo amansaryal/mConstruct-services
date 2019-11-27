@@ -1,0 +1,168 @@
+syntax = "proto3";
+
+import "protos/Common.proto";
+import "protos/TaskData.proto";
+import "protos/FsaData.proto";
+import "protos/DsaData.proto";
+import "protos/OTDRData.proto";
+import "protos/PMTestData.proto";
+option csharp_namespace = "Grpc.services";
+option java_package = "com.mConstruct.protobuf";
+
+service Task {
+
+    rpc GetAssignedFsas (AssignedFsaRequest) returns (AssignedFsaResponse);
+    rpc GetAssignedDsas (AssignedDsaRequest) returns (AssignedDsaResponse);
+    rpc GetAssignedTasks (AssignedTaskRequest) returns (AssignedTaskResponse);
+
+    rpc GetTaskData (TaskDataRequest) returns (TaskData);
+    rpc SaveTaskData (SaveTaskDataRequest) returns (Response);
+
+    rpc GetOTDRData (OTDRDataRequest) returns (OTDRData);
+    rpc SaveOTDRData (SaveOTDRDataRequest) returns (Response);
+
+    rpc GetPMTestData (PMTestDataRequest) returns (PMTestData);
+    rpc SavePMTestData (SavePMTestDataRequest) returns (Response);
+
+    rpc DeclareRFS (RFSRequest) returns (Response);
+
+    rpc GetTaskHistory (TaskHistoryRequest) returns (TaskHistory);
+
+    rpc GetConstructionNotes (ConstructionNotesRequest) returns (ConstructionNotes);
+    rpc SaveConstructionNotes (SaveConstructionNotesRequest) returns (Response);
+
+    rpc UploadPhotoEvidence (UploadPhotoEvidenceRequest) returns (Response);
+    rpc GetPhotoEvidence (PhotoEvidenceRequest) returns (PhotoEvidenceResponse);
+}
+
+enum Activity{
+    DEFAULT_ACTIVITY = 0;
+    UPDATE_ASBUILT = 1;
+    REVIEW_ASBUILT = 2;
+    CREATE_OFFER = 3;
+    REVIEW_OFFER = 4;
+    BUILDING_PERMISSION = 5;
+    PRIORITY_BUILDING = 6;
+}
+
+
+message AssignedFsaRequest{
+    string username = 1;
+    string jpID = 2;
+    Activity activity = 3;
+}
+
+message AssignedFsaResponse{
+    repeated FSA fsaList = 1;
+}
+
+message AssignedDsaRequest{
+    string username = 1;
+    string fsaID = 2;
+    Activity activity = 3;
+}
+
+message AssignedDsaResponse{
+    repeated DSA dsaList = 1;
+}
+
+message AssignedTaskRequest{
+    string username = 1;
+    string dsaID = 2;
+    Activity activity = 3;
+}
+
+message AssignedTaskResponse{
+    EquipmentTasks equipmentTasks = 1;
+    SpanTasks spanTasks = 2;
+    StructureTasks structureTasks = 3;
+    TransmediaTasks transmediaTasks = 4;
+    TransmediaMDUTasks transmediaMduTasks = 5;
+}
+
+message TaskDataRequest{
+    string username = 1;
+    string taskID = 2;
+    Layer layer = 3;
+}
+
+message SaveTaskDataRequest{
+    string username = 1;
+    TaskData taskData = 2;
+}
+
+message OTDRDataRequest{
+    string username = 1;
+    string taskID = 2;
+}
+
+message SaveOTDRDataRequest{
+    string username = 1;
+    OTDRData otdrData = 2;
+}
+
+
+message PMTestDataRequest{
+    string username = 1;
+    string taskID = 2;
+}
+
+message SavePMTestDataRequest{
+    string username = 1;
+    PMTestData pmTestData = 2;
+}
+
+message RFSRequest{
+    enum RFSStatus{
+        NONE = 0;
+        NR_RFS = 1;
+        CR_RFS = 2;
+    }
+    string username = 1;
+    string taskID = 2;
+    string fsaID = 3;
+    RFSStatus rfsStatus = 4;
+}
+
+message TaskHistoryRequest{
+    string username = 1;
+    string taskID = 2;
+}
+
+message ConstructionNotesRequest{
+    string username = 1;
+    string taskID = 2;
+}
+
+message ConstructionNotes{
+    string taskID = 1;
+    string rootCauseAnalysis = 2;
+    string correctiveAction = 3;
+    string preventiveAction = 4;
+    string remarks = 5;
+}
+
+message SaveConstructionNotesRequest{
+    string username = 1;
+    string taskID = 2;
+    string rootCauseAnalysis = 3;
+    string correctiveAction = 4;
+    string preventiveAction = 5;
+    string remarks = 6;
+}
+
+message UploadPhotoEvidenceRequest{
+    string username = 1;
+    string taskID = 2;
+    repeated string base64Images = 3;
+}
+
+message PhotoEvidenceRequest{
+    string username = 1;
+    string taskID = 2;
+}
+
+message PhotoEvidenceResponse{
+    string taskID = 1;
+    repeated string base64Images = 2;
+}

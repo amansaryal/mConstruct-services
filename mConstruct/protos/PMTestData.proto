@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option csharp_namespace = "Grpc.services";
+
+option java_package = "com.mConstruct.protobuf";
+
+
+
+message PMTestData{
+	enum Status{
+    ON_HOLD = 0;
+    COMPLETED = 1;
+	}
+	
+	enum Direction{
+    NONE = 0;
+    EAST = 1;
+    WEST = 2;
+	}
+    int64 objectID = 1;
+    string taskID = 2;
+    Status status = 3;
+    Direction direction = 4;
+    double port1 = 5;
+    double port2 = 6;
+    double port3 = 7;
+    double port4 = 8;
+    double port5 = 9;
+    double port6 = 10;
+    double port7 = 11;
+    double port8 = 12;
+}

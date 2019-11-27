@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+option csharp_namespace = "Grpc.services";
+option java_package = "com.mConstruct.protobuf";
+
+message DashboardData{
+	message FEDashboard{
+		message UpdateAsbuiltCounts{
+			int32 fsaCount = 1;
+			int32 dsaCount = 2;
+			int32 pendingTaskCount = 3;
+		}
+		UpdateAsbuiltCounts updateAsbuiltCounts = 1;
+
+		message CreateOfferCounts{
+			int32 fsaCount = 1;
+			int32 completedTaskCount = 2;
+		}
+		CreateOfferCounts createOfferCounts = 2;
+
+		message ReviewAsbuiltCounts{
+			int32 fsaCount = 1;
+			int32 dsaCount = 2;
+			int32 pendingTaskCount = 3;
+		}
+		ReviewAsbuiltCounts reviewAsbuiltCounts = 3;
+
+		message ReviewOfferCounts{
+			int32 fsaCount = 1;
+			int32 reviewOfferCount = 2;
+			int32 rejectedTaskCount = 3;
+		}
+		ReviewOfferCounts reviewOfferCounts = 4;
+
+		message BuildingPermissionCounts{
+			int32 totalBuildings = 1;
+			int32 acquiredBuildings = 2;
+			int32 pendingBuildings = 3;
+			int32 permissionNotRequiredBuildings = 4;
+		}
+		BuildingPermissionCounts buildingPermissionCounts = 5;
+
+		message PriorityBuildingTasksCounts{
+			int32 totalBuildings = 1;
+			int32 totalS2 = 2;
+		}
+		PriorityBuildingTasksCounts priorityBuildingTasksCounts = 6;
+	}
+
+	FEDashboard feDashboard = 1;
+
+	message QEDashboard{
+		message ReviewAsbuiltCounts{
+			int32 fsaCount = 1;
+			int32 dsaCount = 2;
+			int32 pendingTaskCount = 3;
+		}
+		ReviewAsbuiltCounts reviewAsbuiltCounts = 1;
+	}
+	QEDashboard qeDashboard = 2;
+
+	message ILDashboard{
+		message ReviewOfferCounts{
+			int32 fsaCount = 1;
+			int32 reviewOfferCount = 2;
+			int32 rejectedTaskCount = 3;
+		}
+		ReviewOfferCounts reviewOfferCounts = 1;
+	}
+
+	ILDashboard ilDashboard = 3;
+}
+
+
+
+

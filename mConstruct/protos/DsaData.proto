@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+option csharp_namespace = "Grpc.services";
+option java_package = "com.mConstruct.protobuf";
+
+message DSA{
+    string dsaName = 1;
+    string dsaID = 2;
+    int32 taskCount = 3;
+    int32 pendingTaskCount = 4;
+    int32 completedTaskCount = 5;
+    int32 acceptedTaskCount = 6;
+    int32 rejectedTaskCount = 7;
+    int32 reviewTaskCount = 8;
+    int32 inProgressTaskCount = 9;
+    string fsaName = 10;
+    string fsaID = 11;
+    string jpName = 12;
+    string jpID = 13;
+}

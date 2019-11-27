@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "Grpc.common";
+option java_package = "com.mConstruct.protobuf";
+
+enum Layer{
+	NONE = 0;
+	EQUIPMENT = 1;
+	SPAN = 2;
+	STRUCTURE = 3;
+	TRANSMEDIA = 4;
+	TRANSMEDIA_MDU = 5;
+}
+
+message Response{
+	string message = 1;
+}

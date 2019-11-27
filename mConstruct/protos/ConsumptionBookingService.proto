@@ -1,0 +1,138 @@
+syntax = "proto3";
+
+import "protos/Common.proto";
+import "protos/ConsumptionBookingData.proto";
+import "protos/OfferData.proto";
+option csharp_namespace = "Grpc.services";
+option java_package = "com.mConstruct.protobuf";
+
+service ConsumptionBooking{
+	rpc GetBoQ (BoQRequest) returns (BoQResponse);
+	rpc SaveBoQ (SaveBoQRequest) returns (Response);
+
+	rpc GetSoQ (SoQRequest) returns (SoQResponse);
+	rpc SaveSoQ (SaveSoQRequest) returns (Response);
+
+	rpc GetSummaryBoQForSplitterTask (SummaryBoQForSplitterTaskRequest) returns (BoQResponse);
+	rpc GetSummaryBoQForFeederTask (SummaryBoQForFeederTaskRequest) returns (BoQResponse);
+	rpc SaveSummaryBoQForSplitterTask (SaveSummaryBoQForSplitterTaskRequest) returns (Response);
+	rpc SaveSummaryBoQForFeederTask (SaveSummaryBoQForFeederTaskRequest) returns (Response);
+	rpc GetSummaryBoQForOffer (SummaryBoQForOfferRequest) returns (BoQResponse);
+
+	rpc GetSummarySoQForSplitterTask (SummarySoQForSplitterTaskRequest) returns (SoQResponse);
+	rpc GetSummarySoQForFeederTask (SummarySoQForFeederTaskRequest) returns (SoQResponse);
+	rpc SaveSummarySoQForSplitterTask (SaveSummarySoQForSplitterTaskRequest) returns (Response);
+	rpc SaveSummarySoQForFeederTask (SaveSummarySoQForFeederTaskRequest) returns (Response);
+	rpc GetSummarySoQForOffer (SummarySoQForOfferRequest) returns (SoQResponse);
+
+	rpc GetAdditionalBoQ (AdditionalBoQRequest) returns (BoQResponse);
+	rpc GetAdditionalSoQ (AdditionalSoQRequest) returns (SoQResponse);
+}
+
+message BoQRequest{
+	string username = 1;
+	string taskID = 2;
+}
+
+message BoQResponse{
+	string taskID = 1;
+	repeated BoQ boqList = 2;
+}
+
+message SaveBoQRequest{
+	string username = 1;
+	string taskID = 2;
+	repeated BoQ boqList = 3;
+}
+
+message SoQRequest{
+	string username = 1;
+	string taskID = 2;
+}
+
+message SoQResponse{
+	string taskID = 1;
+	repeated SoQ soqList = 2;
+}
+
+message SaveSoQRequest{
+	string username = 1;
+	string taskID = 2;
+	repeated SoQ soqList = 3;
+}
+
+message SummaryBoQForSplitterTaskRequest{
+	string username = 1;
+	string taskID = 2;
+	SplitterPort splitterPort = 3;
+}
+
+message SummaryBoQForFeederTaskRequest{
+	string username = 1;
+	string taskID = 2;
+}
+
+message SummaryBoQForOfferRequest{
+	string username = 1;
+	string offerCode = 2;
+	OfferCategory offerCategory = 3;
+	string fsaID = 4;
+}
+
+message SaveSummaryBoQForSplitterTaskRequest{
+	string username = 1;
+	string taskID = 2;
+	repeated BoQ boqList = 3;
+	SplitterPort splitterPort = 4;
+
+}
+
+message SaveSummaryBoQForFeederTaskRequest{
+	string username = 1;
+	string taskID = 2;
+	repeated BoQ boqList = 3;
+}
+
+message SummarySoQForSplitterTaskRequest{
+	string username = 1;
+	string taskID = 2;
+	SplitterPort splitterPort = 3;
+}
+
+message SummarySoQForFeederTaskRequest{
+	string username = 1;
+	string taskID = 2;
+}
+
+message SummarySoQForOfferRequest{
+	string username = 1;
+	string offerCode = 2;
+	OfferCategory offerCategory = 3;
+	string fsaID = 4;
+}
+
+message SaveSummarySoQForSplitterTaskRequest{
+	string username = 1;
+	string taskID = 2;
+	repeated SoQ soqList = 3;
+	SplitterPort splitterPort = 4;
+}
+
+message SaveSummarySoQForFeederTaskRequest{
+	string username = 1;
+	string taskID = 2;
+	repeated SoQ soqList = 3;
+}
+
+message AdditionalBoQRequest{
+	string username = 1;
+	string taskID = 2;
+}
+
+message AdditionalSoQRequest{
+	string username = 1;
+	string taskID = 2;
+}
+
+
+

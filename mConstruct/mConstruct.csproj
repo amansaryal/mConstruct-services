@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.10.1" />
+    <PackageReference Include="Grpc.Core" Version="2.25.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.25.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+
+    <Protobuf Include="protos\Common.proto" />
+    <Protobuf Include="protos\ConsumptionBookingData.proto" />
+    <Protobuf Include="protos\ConsumptionBookingService.proto" />
+    <Protobuf Include="protos\DashboardData.proto" />
+    <Protobuf Include="protos\DashboardService.proto" />
+    <Protobuf Include="protos\DsaData.proto" />
+    <Protobuf Include="protos\FsaData.proto" />
+    <Protobuf Include="protos\K2Data.proto" />
+    <Protobuf Include="protos\K2Service.proto" />
+    <Protobuf Include="protos\OfferData.proto" />
+    <Protobuf Include="protos\OfferService.proto" />
+    <Protobuf Include="protos\OTDRData.proto" />
+    <Protobuf Include="protos\PMTestData.proto" />
+    <Protobuf Include="protos\QCData.proto" />
+    <Protobuf Include="protos\QCService.proto" />
+    <Protobuf Include="protos\SessionService.proto" />
+    <Protobuf Include="protos\Struct.proto" />
+    <Protobuf Include="protos\TaskData.proto" />
+    <Protobuf Include="protos\TaskService.proto" />
+
+  </ItemGroup>
+  
+</Project>

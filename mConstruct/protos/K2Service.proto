@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+import "protos/K2Data.proto";
+option csharp_namespace = "Grpc.services";
+option java_package = "com.mConstruct.protobuf";
+
+service K2{
+	rpc GetAssignedJioPoints (AssignedJioPointsRequest) returns (AssignedJioPointsResponse);
+}
+
+message AssignedJioPointsRequest{
+	string username = 1;
+	string token = 2;
+}
+
+message AssignedJioPointsResponse{
+	K2Role role = 1;
+	string userIDNumber = 2;
+	string username = 3;
+	string token = 4;
+	repeated JioPoint jioPoints = 5;
+}

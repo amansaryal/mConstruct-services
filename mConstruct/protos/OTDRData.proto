@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option csharp_namespace = "Grpc.services";
+option java_package = "com.mConstruct.protobuf";
+
+
+message OTDRData{
+
+	enum Status{
+    ON_HOLD = 0;
+    COMPLETED = 1;
+	}
+	
+	enum Direction{
+    NONE = 0;
+    EAST = 1;
+    WEST = 2;
+	}
+
+    int64 objectID = 1;
+    string taskID = 2;
+    Status status = 3;
+    Direction direction = 4;
+    int32 port = 5;
+    double linkLoss = 6;
+    double length = 7;
+    int32 event = 8;
+    double maxSplice = 9;
+    double linkORL = 10;
+    repeated string files = 11;
+    repeated string filetypes = 12;
+}

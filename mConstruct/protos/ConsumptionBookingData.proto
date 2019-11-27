@@ -1,0 +1,43 @@
+syntax = "proto3";
+option csharp_namespace = "Grpc.consumptionBooking";
+option java_package = "com.mConstruct.protobuf";
+
+enum FTTxID{
+    NO_ID = 0;
+    ID_EQUIPMENT = 1;
+    ID_STRUCTURE = 2;
+    ID_SPAN = 3;
+    ID_TRANSMEDIA = 4;
+    ID_FSA_LEVEL_LENGTH = 5;
+    ID_FSA_LEVEL_QUANTITY = 6;
+    ID_FSA_LEVEL_VOLUME = 7;
+    ID_TRANSMEDIA_MDU = 8;
+    ID_SPLICE_CLOSURE = 9;
+    ID_AERIAL_ACCESSORIES = 10;
+    ID_PLUGIN = 11;
+}
+
+enum TAG{
+    DEFAULT = 0;
+    NEW = 1;
+}
+
+message BoQ{
+    string matCode = 1;
+    string shortDescription = 2;
+    double designQuantity = 3;
+    double actualQuantity = 4;
+    string unitOfMeasurement = 5;
+    FTTxID fttxID = 6;
+    TAG tag = 7;
+}
+
+message SoQ{
+    string serviceCode = 1;
+    string shortDescription = 2;
+    double designQuantity = 3;
+    double actualQuantity = 4;
+    string unitOfMeasurement = 5;
+    FTTxID fttxID = 6;
+    TAG tag = 7;
+}
