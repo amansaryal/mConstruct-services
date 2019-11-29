@@ -4,6 +4,8 @@ using mConstructServer.services;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.NetworkInformation;
+using System.Net.Sockets;
 
 namespace mConstructServer
 {
@@ -19,7 +21,7 @@ namespace mConstructServer
             var keyCertificatePairs = new List<KeyCertificatePair>();
             keyCertificatePairs.Add(new KeyCertificatePair(servercert, serverkey));
 
-            var credentials = new SslServerCredentials(keyCertificatePairs, cacert, SslClientCertificateRequestType.RequestAndRequireAndVerify);
+            var credentials = new SslServerCredentials(keyCertificatePairs, cacert, SslClientCertificateRequestType.DontRequest);
             Server server = new Server
             {
                 Services = { 
@@ -31,7 +33,7 @@ namespace mConstructServer
                     Offer.BindService(new OfferService()),
                     QC.BindService(new QCService())
                 },
-                Ports = { new ServerPort("192.168.29.91", Port, credentials /*SslServerCredentials.Insecure*/) }
+                Ports = { new ServerPort(GetAllLocalIPv4(NetworkInterfaceType.Wireless80211)[0], Port, credentials /*SslServerCredentials.Insecure*/) }
             };
             server.Start();
 
@@ -40,6 +42,25 @@ namespace mConstructServer
             Console.ReadKey();
 
             server.ShutdownAsync().Wait();
+        }
+
+        private static string[] GetAllLocalIPv4(NetworkInterfaceType _type)
+        {
+            List<string> ipAddrList = new List<string>();
+            foreach (NetworkInterface item in NetworkInterface.GetAllNetworkInterfaces())
+            {
+                if (item.NetworkInterfaceType == _type && item.OperationalStatus == OperationalStatus.Up)
+                {
+                    foreach (UnicastIPAddressInformation ip in item.GetIPProperties().UnicastAddresses)
+                    {
+                        if (ip.Address.AddressFamily == AddressFamily.InterNetwork)
+                        {
+                            ipAddrList.Add(ip.Address.ToString());
+                        }
+                    }
+                }
+            }
+            return ipAddrList.ToArray();
         }
     }
 }

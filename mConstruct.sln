@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29411.108
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mConstruct", "mConstruct\mConstruct.csproj", "{FA963826-EE15-4ED4-9B80-1B342732B299}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mConstruct", "mConstruct\mConstruct.csproj", "{FA963826-EE15-4ED4-9B80-1B342732B299}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mConstructServer", "mConstructServer\mConstructServer.csproj", "{3F2E0B81-BC2B-4719-B715-4C0C6ACEAE28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mConstructServer", "mConstructServer\mConstructServer.csproj", "{3F2E0B81-BC2B-4719-B715-4C0C6ACEAE28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mConstructClient", "mConstructClient\mConstructClient.csproj", "{61CEFC32-6DB5-48DB-B6BC-00AE0F577A40}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mConstructClient", "mConstructClient\mConstructClient.csproj", "{61CEFC32-6DB5-48DB-B6BC-00AE0F577A40}"
 	ProjectSection(ProjectDependencies) = postProject
 		{FA963826-EE15-4ED4-9B80-1B342732B299} = {FA963826-EE15-4ED4-9B80-1B342732B299}
 	EndProjectSection
