@@ -19,7 +19,7 @@ namespace mConstructServer
             var keyCertificatePairs = new List<KeyCertificatePair>();
             keyCertificatePairs.Add(new KeyCertificatePair(servercert, serverkey));
 
-            var credentials = new SslServerCredentials(keyCertificatePairs, cacert, SslClientCertificateRequestType.RequestAndRequireAndVerify);
+            var credentials = new SslServerCredentials(keyCertificatePairs, cacert, SslClientCertificateRequestType.DontRequest);
             Server server = new Server
             {
                 Services = { 

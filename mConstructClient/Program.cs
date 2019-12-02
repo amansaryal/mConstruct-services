@@ -22,7 +22,7 @@ namespace mConstructClient
             var keyCertificatePair = new KeyCertificatePair(clientcert, clientkey);
 
             var credentials = new SslCredentials(cacert, keyCertificatePair);
-            Channel channel = new Channel("192.168.29.91:50051", credentials/*SslCredentials.Insecure*/);
+            Channel channel = new Channel("192.168.29.91",50051, credentials/*SslCredentials.Insecure*/);
 
             headers.Add(new Metadata.Entry("SessionToken", token));
 
@@ -44,6 +44,9 @@ namespace mConstructClient
 
             try
             {
+                client.Login(new LoginRequest
+                {
+                }, new CallOptions(headers));
             }
             catch (RpcException e)
             {

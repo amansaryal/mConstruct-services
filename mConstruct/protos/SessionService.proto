@@ -30,9 +30,10 @@ message LoginRequest{
 }
 
 message UserSession{
-	string token = 1;
-	repeated Role roles = 2;
-	string appVersion = 3;
+	string username = 1;
+	string token = 2;
+	repeated Role roles = 3;
+	int32 appVersion = 4;
 }
 
 message LogoutRequest{

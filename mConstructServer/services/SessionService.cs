@@ -9,7 +9,7 @@ namespace mConstructServer.services
 {
     public class SessionService : Session.SessionBase
     {
-        private string MCONSTRUCT_VERSION = "2.3";
+        private int MCONSTRUCT_VERSION = 23;
 
         public override Task<UserSession> Login(LoginRequest request, ServerCallContext context)
         {
@@ -29,6 +29,7 @@ namespace mConstructServer.services
 
             UserSession userSession = new UserSession();
             userSession.Token = "abcd1234";
+            userSession.Username = request.Username;
             userSession.Roles.Add(Role.FieldEngineer);
             userSession.Roles.Add(Role.QualityEngineer);
             userSession.AppVersion = MCONSTRUCT_VERSION;
