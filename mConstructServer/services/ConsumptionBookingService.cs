@@ -25,8 +25,8 @@ namespace mConstructServer.services
 
             if (string.IsNullOrEmpty(request.TaskID))
                 throw new RpcException(new Status(StatusCode.FailedPrecondition, String.Format("TaskID = {0}", request.TaskID)), "Task ID can not be null or empty");
-            if (request.BoqList == null)
-                throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("BoqList = {0}", request.BoqList)), "Boq list can not be null");
+            if (request.Boq == null)
+                throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("BoqList = {0}", request.Boq)), "Boq list can not be null");
 
             return base.SaveBoQ(request, context);
         }
@@ -48,8 +48,8 @@ namespace mConstructServer.services
 
             if (string.IsNullOrEmpty(request.TaskID))
                 throw new RpcException(new Status(StatusCode.FailedPrecondition, String.Format("TaskID = {0}", request.TaskID)), "Task ID can not be null or empty");
-            if (request.SoqList == null)
-                throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("SoqList = {0}", request.SoqList)), "Soq list can not be null");
+            if (request.Soq == null)
+                throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("SoqList = {0}", request.Soq)), "Soq list can not be null");
 
             return base.SaveSoQ(request, context);
         }
@@ -73,8 +73,8 @@ namespace mConstructServer.services
 
             if (string.IsNullOrEmpty(request.TaskID))
                 throw new RpcException(new Status(StatusCode.FailedPrecondition, String.Format("TaskID = {0}", request.TaskID)), "Task ID can not be null or empty");
-            if (request.BoqList == null)
-                throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("BoqList = {0}", request.BoqList)), "Boq list can not be null");
+            if (request.Boq == null)
+                throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("BoqList = {0}", request.Boq)), "Boq list can not be null");
             if (request.SplitterPort == SplitterPort.NoPort)
                 throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("SplitterPort = {0}", request.SplitterPort)), "Invalid splitter port");
 
@@ -99,8 +99,8 @@ namespace mConstructServer.services
 
             if (string.IsNullOrEmpty(request.TaskID))
                 throw new RpcException(new Status(StatusCode.FailedPrecondition, String.Format("TaskID = {0}", request.TaskID)), "Task ID can not be null or empty");
-            if (request.BoqList == null)
-                throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("BoqList = {0}", request.BoqList)), "Boq list can not be null");
+            if (request.Boq == null)
+                throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("BoqList = {0}", request.Boq)), "Boq list can not be null");
 
             return base.SaveSummaryBoQForFeederTask(request, context);
         }
@@ -124,8 +124,8 @@ namespace mConstructServer.services
 
             if (string.IsNullOrEmpty(request.TaskID))
                 throw new RpcException(new Status(StatusCode.FailedPrecondition, String.Format("TaskID = {0}", request.TaskID)), "Task ID can not be null or empty");
-            if (request.SoqList == null)
-                throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("SoqList = {0}", request.SoqList)), "Soq list can not be null");
+            if (request.Soq == null)
+                throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("SoqList = {0}", request.Soq)), "Soq list can not be null");
             if (request.SplitterPort == SplitterPort.NoPort)
                 throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("SplitterPort = {0}", request.SplitterPort)), "Invalid splitter port");
 
@@ -149,8 +149,8 @@ namespace mConstructServer.services
 
             if (string.IsNullOrEmpty(request.TaskID))
                 throw new RpcException(new Status(StatusCode.FailedPrecondition, String.Format("TaskID = {0}", request.TaskID)), "Task ID can not be null or empty");
-            if (request.SoqList == null)
-                throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("SoqList = {0}", request.SoqList)), "Soq list can not be null");
+            if (request.Soq == null)
+                throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("SoqList = {0}", request.Soq)), "Soq list can not be null");
 
             return base.SaveSummarySoQForFeederTask(request, context);
         }

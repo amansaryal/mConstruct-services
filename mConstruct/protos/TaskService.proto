@@ -53,7 +53,7 @@ message AssignedFsaRequest{
 }
 
 message AssignedFsaResponse{
-    repeated FSA fsaList = 1;
+    repeated FSA fsa = 1;
 }
 
 message AssignedDsaRequest{
@@ -63,7 +63,7 @@ message AssignedDsaRequest{
 }
 
 message AssignedDsaResponse{
-    repeated DSA dsaList = 1;
+    repeated DSA dsa = 1;
 }
 
 message AssignedTaskRequest{
@@ -73,11 +73,12 @@ message AssignedTaskRequest{
 }
 
 message AssignedTaskResponse{
-    EquipmentTasks equipmentTasks = 1;
-    SpanTasks spanTasks = 2;
-    StructureTasks structureTasks = 3;
-    TransmediaTasks transmediaTasks = 4;
-    TransmediaMDUTasks transmediaMduTasks = 5;
+    repeated TaskSnapshot task = 1;
+//    EquipmentTasks equipmentTasks = 1;
+//    SpanTasks spanTasks = 2;
+//    StructureTasks structureTasks = 3;
+//    TransmediaTasks transmediaTasks = 4;
+//    TransmediaMDUTasks transmediaMduTasks = 5;
 }
 
 message TaskDataRequest{
@@ -154,7 +155,7 @@ message SaveConstructionNotesRequest{
 message UploadPhotoEvidenceRequest{
     string username = 1;
     string taskID = 2;
-    repeated string base64Images = 3;
+    repeated string base64Image = 3;
 }
 
 message PhotoEvidenceRequest{
@@ -164,5 +165,5 @@ message PhotoEvidenceRequest{
 
 message PhotoEvidenceResponse{
     string taskID = 1;
-    repeated string base64Images = 2;
+    repeated string base64Image = 2;
 }

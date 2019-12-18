@@ -14,9 +14,9 @@ message AssignedJioPointsRequest{
 }
 
 message AssignedJioPointsResponse{
-	K2Role role = 1;
+	repeated K2Role role = 1;
 	string userIDNumber = 2;
 	string username = 3;
 	string token = 4;
-	repeated JioPoint jioPoints = 5;
+	repeated JioPoint jioPoint = 5;
 }

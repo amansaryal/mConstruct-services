@@ -112,8 +112,8 @@ namespace mConstructServer.services
         {
             SessionUtil.CheckSession(request.Username, MetadataUtil.GetToken(context));
 
-            if (request.LayerWiseTaskList == null)
-                throw new RpcException(new Status(StatusCode.FailedPrecondition, String.Format("LayerWiseTaskList = {0}", request.LayerWiseTaskList)), "Task list can not be null");
+            if (request.LayerWiseTask == null)
+                throw new RpcException(new Status(StatusCode.FailedPrecondition, String.Format("LayerWiseTaskList = {0}", request.LayerWiseTask)), "Task list can not be null");
 
             return base.GetGeoDataForOfferSubTasks(request, context);
         }

@@ -78,8 +78,8 @@ message AcceptOfferRequest{
 
 message GeoDataRequest{
 	string username = 1;
-	repeated TaskWrapper layerWiseTaskList = 2;
+	repeated TaskWrapper layerWiseTask = 2;
 }
 message GeoDataResponse{
-	repeated GeoDataWrapper geoDataList = 1;
+	repeated GeoDataWrapper geoData = 1;
 }

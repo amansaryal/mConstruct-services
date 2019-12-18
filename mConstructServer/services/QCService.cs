@@ -29,8 +29,8 @@ namespace mConstructServer.services
                 throw new RpcException(new Status(StatusCode.FailedPrecondition, String.Format("TaskID = {0}", request.TaskID)), "Task ID can not be null or empty");
             if (request.Layer == Layer.None)
                 throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("Layer = {0}", request.Layer)), "Invalid layer");
-            if (request.QualityCheckpoints == null)
-                throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("QualityCheckpoints = {0}", request.QualityCheckpoints)), "Quality checkpoints list can not be null");
+            if (request.QualityCheckpoint == null)
+                throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("QualityCheckpoints = {0}", request.QualityCheckpoint)), "Quality checkpoints list can not be null");
 
             if (request.IsApprovedCase == SaveQCRequest.IsApprovedOneofCase.None)
                 throw new RpcException(new Status(StatusCode.InvalidArgument, String.Format("IsApprovedCase = {0}", request.IsApprovedCase)), "Quality check approval must be given");

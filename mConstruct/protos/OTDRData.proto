@@ -27,6 +27,6 @@ message OTDRData{
     int32 event = 8;
     double maxSplice = 9;
     double linkORL = 10;
-    repeated string files = 11;
-    repeated string filetypes = 12;
+    repeated string file = 11;
+    repeated string filetype = 12;
 }
