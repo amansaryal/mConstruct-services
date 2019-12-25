@@ -36,13 +36,13 @@ message BoQRequest{
 
 message BoQResponse{
 	string taskID = 1;
-	repeated BoQ boqList = 2;
+	repeated BoQ boq = 2;
 }
 
 message SaveBoQRequest{
 	string username = 1;
 	string taskID = 2;
-	repeated BoQ boqList = 3;
+	repeated BoQ boq = 3;
 }
 
 message SoQRequest{
@@ -52,13 +52,13 @@ message SoQRequest{
 
 message SoQResponse{
 	string taskID = 1;
-	repeated SoQ soqList = 2;
+	repeated SoQ soq = 2;
 }
 
 message SaveSoQRequest{
 	string username = 1;
 	string taskID = 2;
-	repeated SoQ soqList = 3;
+	repeated SoQ soq = 3;
 }
 
 message SummaryBoQForSplitterTaskRequest{
@@ -82,7 +82,7 @@ message SummaryBoQForOfferRequest{
 message SaveSummaryBoQForSplitterTaskRequest{
 	string username = 1;
 	string taskID = 2;
-	repeated BoQ boqList = 3;
+	repeated BoQ boq = 3;
 	SplitterPort splitterPort = 4;
 
 }
@@ -90,7 +90,7 @@ message SaveSummaryBoQForSplitterTaskRequest{
 message SaveSummaryBoQForFeederTaskRequest{
 	string username = 1;
 	string taskID = 2;
-	repeated BoQ boqList = 3;
+	repeated BoQ boq = 3;
 }
 
 message SummarySoQForSplitterTaskRequest{
@@ -114,14 +114,14 @@ message SummarySoQForOfferRequest{
 message SaveSummarySoQForSplitterTaskRequest{
 	string username = 1;
 	string taskID = 2;
-	repeated SoQ soqList = 3;
+	repeated SoQ soq = 3;
 	SplitterPort splitterPort = 4;
 }
 
 message SaveSummarySoQForFeederTaskRequest{
 	string username = 1;
 	string taskID = 2;
-	repeated SoQ soqList = 3;
+	repeated SoQ soq = 3;
 }
 
 message AdditionalBoQRequest{

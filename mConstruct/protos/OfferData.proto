@@ -78,13 +78,13 @@ message LayerSummary{
     double totalDesignValue = 2;
     double totalActualValue = 3;
     string uom = 4;
-    repeated TaskSnapshot taskList = 5;
+    repeated TaskSnapshot task = 5;
     QualityCheckpointSnippet qualityCheckpoints = 6;
 }
 
 message TaskWrapper{
     Layer layer = 1;
-    repeated string taskNEIDs = 2;
+    repeated string taskNEID = 2;
 }
 
 message GeoDataWrapper{

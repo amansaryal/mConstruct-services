@@ -16,10 +16,10 @@ namespace mConstructServer
         public static void Main(string[] args)
         {
             var cacert = File.ReadAllText(@"certificate\ca.cert");
-            var servercert = File.ReadAllText(@"certificate\server.pem");
-            var serverkey = File.ReadAllText(@"certificate\server.key");
+            //var servercert = File.ReadAllText(@"certificate\server.pem");
+            //var serverkey = File.ReadAllText(@"certificate\server.key");
             var keyCertificatePairs = new List<KeyCertificatePair>();
-            keyCertificatePairs.Add(new KeyCertificatePair(servercert, serverkey));
+            //keyCertificatePairs.Add(new KeyCertificatePair(servercert, serverkey));
 
             var credentials = new SslServerCredentials(keyCertificatePairs, cacert, SslClientCertificateRequestType.DontRequest);
             Server server = new Server

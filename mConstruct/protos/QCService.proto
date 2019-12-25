@@ -23,7 +23,7 @@ message QCRequest{
 message QCResponse{
 	string taskID = 1;
 	Layer layer = 2;
-	repeated QualityCheckpoint qualityCheckpoints = 3;
+	repeated QualityCheckpoint qualityCheckpoint = 3;
 	oneof isApproved {
 		bool feApproved = 4;
 		bool qeApproved = 5;
@@ -35,7 +35,7 @@ message SaveQCRequest{
 	string username = 1;
 	string taskID = 2;
 	Layer layer = 3;
-	repeated QualityCheckpoint qualityCheckpoints = 4;
+	repeated QualityCheckpoint qualityCheckpoint = 4;
 	oneof isApproved {
 		bool feApproved = 5;
 		bool qeApproved = 6;

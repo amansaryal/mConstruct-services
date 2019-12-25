@@ -13,6 +13,7 @@ service Offer{
 	rpc CreateSplitterOffer (CreateSplitterOfferRequest) returns (OfferDetails);
 	rpc CreateFeederOffer (CreateFeederOfferRequest) returns (OfferDetails);
 
+	rpc GetAllOffers (OffersRequest) returns (OffersResponse);
 	rpc GetSplitterOffers (OffersRequest) returns (OffersResponse);
 	rpc GetFeederOffers (OffersRequest) returns (OffersResponse);
 	rpc GetOfferSummary (OfferSummaryRequest) returns (OfferSummary);
@@ -29,11 +30,11 @@ message OffersRequest{
 }
 
 message PossibleOffersResponse{
-	repeated PossibleOffer possibleOffers = 1;
+	repeated PossibleOffer possibleOffer = 1;
 }
 
 message OffersResponse{
-	repeated OfferData offers = 1;
+	repeated OfferData offer = 1;
 }
 
 message SplitterPossibleOfferSummaryRequest{
@@ -78,8 +79,8 @@ message AcceptOfferRequest{
 
 message GeoDataRequest{
 	string username = 1;
-	repeated TaskWrapper layerWiseTaskList = 2;
+	repeated TaskWrapper layerWiseTask = 2;
 }
 message GeoDataResponse{
-	repeated GeoDataWrapper geoDataList = 1;
+	repeated GeoDataWrapper geoData = 1;
 }
