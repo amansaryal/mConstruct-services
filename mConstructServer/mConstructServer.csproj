@@ -6,6 +6,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="certificate\ca.cert" />
+    <None Remove="certificate\service.key" />
+    <None Remove="certificate\service.pem" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="certificate\ca.cert">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="certificate\service.key">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="certificate\service.pem">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Topshelf" Version="4.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\mConstruct\mConstruct.csproj" />
   </ItemGroup>
 

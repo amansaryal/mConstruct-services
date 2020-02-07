@@ -25,6 +25,11 @@ enum Status{
     REWORK = 4;
 }
 
+enum Installation{
+    OUTDOOR = 0;
+    INDOOR = 1;
+}
+
 message TaskSnapshot{
     string taskId = 1;
     string taskNEID = 2;
@@ -43,6 +48,8 @@ message TaskSnapshot{
     string jpID = 15;
     Layer layer = 16;
     TaskType taskType = 17;
+    string assignedDate = 18;
+    string modifiedDate = 19;
 }
 
 message ODNTasks{
@@ -93,22 +100,81 @@ message EquipmentDataFields{
     int64 objectID = 1;
     TaskSnapshot taskSnapshot = 2;
     string feederNumber = 3;
-    OTDRStatus otdrStatus = 4;
+
+    string equipmentRefName = 4;
+    string designEquipmentRefName = 5;
+
+    string parentStructureID = 6;
+    string designParentStructureID = 7;
+
+
+    OTDRStatus otdrStatus = 8;
+    double opticalLossEast = 9;
+    double opticalLossWest = 10;
+    double designOpticalLossEast = 11;
+    double designOpticalLossWest = 12;
+
+    string testingEquipmentName = 13;
+    string equipmentSerialNumber = 14;
+    string locationName = 15;
+    string calibrationDate = 16; //date type
+
+    Installation installation = 17;
+    string floor = 18;
+    string wing = 19;
+    string designFloor = 20;
+    string designWing = 21;
+
+
+    int32 spliceCount = 22;
+    int32 designSpliceCount = 23;
+
+    string label = 24;
 }
 
 message SpanDataFields{
     int64 objectID = 1;
     TaskSnapshot taskSnapshot = 2;
+    double length = 3;
+    string constructionMethod = 4;
+    string ductConfig = 5;
+    string strata = 6;
+    bool fim = 7;
+    double depth = 8;
+    bool rowRequired = 9;
+    string rowType = 10;
+
+    double designLength = 11;
+    string designConstructionMethod = 12;
+    string designDuctConfig = 13;
 }
 
 message StructureDataFields{
     int64 objectID = 1;
     TaskSnapshot taskSnapshot = 2;
+    string structureRefName = 3;
+    string structureType = 4;
+    string productSerialNo = 5;
+    string locationLandmark = 6;
+    string mhHhSize = 7;
+
+    string designStructureRefName = 8;
+    string designStructureType = 9;
 }
 
 message TransmediaDataFields{
     int64 objectID = 1;
     TaskSnapshot taskSnapshot = 2;
+    double length = 3;
+    string transmediaType = 4;
+    string transmediaCategory = 5;
+    string label = 6;
+    double otdrReadingStart = 7;
+    double otdrReadingEnd = 8;
+
+    double designLength = 9;
+    string designTransmediaType = 10;
+    string designTransmediaCategory = 11;
 }
 
 message TransmediaMDUDataFields{

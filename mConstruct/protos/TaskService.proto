@@ -145,11 +145,7 @@ message ConstructionNotes{
 
 message SaveConstructionNotesRequest{
     string username = 1;
-    string taskID = 2;
-    string rootCauseAnalysis = 3;
-    string correctiveAction = 4;
-    string preventiveAction = 5;
-    string remarks = 6;
+    ConstructionNotes constructionNotes = 2;
 }
 
 message UploadPhotoEvidenceRequest{

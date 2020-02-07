@@ -1,6 +1,7 @@
 ﻿using Grpc.Core;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace mConstructServer
@@ -9,10 +10,15 @@ namespace mConstructServer
     {
         public static string GetToken(ServerCallContext context)
         {
-            Metadata.Entry entry = new Metadata.Entry("sessionToken", "");
-            int index = context.RequestHeaders.IndexOf(entry);
+            Metadata.Entry metadataEntry = context.RequestHeaders.FirstOrDefault(m =>
+            String.Equals(m.Key, "session-token", StringComparison.Ordinal));
 
-            return index >= 0 ? context.RequestHeaders[index].Value : entry.Value;
+            if (metadataEntry.Equals(default(Metadata.Entry)) || metadataEntry.Value == null)
+            {
+                return null;
+            }
+
+            return metadataEntry.Value.ToString();
         }
     }
 }

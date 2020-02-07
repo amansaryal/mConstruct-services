@@ -18,19 +18,19 @@ enum SplitterType{
     S1 = 1;
 }
 
-enum FeederNumber{
+enum FeederNumber {
     Feeder1 = 0;
     Feeder2 = 1;
 }
 
-enum SplitterPort{
+enum SplitterPort {
 	NO_PORT = 0;
     IN_1 = 1;
     IN_2 = 2;
 	ALL = 3;
 }
 
-message PossibleOffer{
+message PossibleOffer {
     OfferCategory offerCategory = 1;
     string taskId = 2;
     string taskNEID = 3;
@@ -44,13 +44,18 @@ message PossibleOffer{
     int32 completedTasksCount = 11;
     int32 pendingTasksCount = 12;
     oneof identifier{
-        SplitterType splitterType = 13;
+        SplitterOfferTags splitterTags = 13;
         FeederNumber feederNumber = 14;
     }
+    Status status = 15;
 }
 
+message SplitterOfferTags {
+    SplitterType splitterType = 1;
+    SplitterPort splitterPort = 2;
+}
 
-message OfferData{
+message OfferData {
     string offerCode = 1;
     string fsaName = 2;
     string fsaID = 3;
@@ -59,13 +64,13 @@ message OfferData{
     int32 totalTasksCount = 6;
     OfferCategory offerCategory = 7;
     oneof identifier{
-        SplitterType splitterType = 9;
+        SplitterOfferTags splitterTags = 9;
         FeederNumber feederNumber = 10;
     }
     string taskID = 11;
 }
 
-message OfferSummary{
+message OfferSummary {
     string offerCode = 1;
     LayerSummary  equipmentSummary = 2;
     LayerSummary  transmediaSummary = 3;

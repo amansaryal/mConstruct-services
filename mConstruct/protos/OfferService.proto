@@ -6,13 +6,14 @@ option csharp_namespace = "Grpc.services";
 option java_package = "com.mConstruct.protobuf";
 
 service Offer{
-	rpc GetPossibleSplitterOffers (OffersRequest) returns (PossibleOffersResponse);
+	rpc GetPossibleSplitterOffers (PossibleSplitterOffersRequest) returns (PossibleOffersResponse);
 	rpc GetPossibleFeederOffers (OffersRequest) returns (PossibleOffersResponse);
 	rpc GetSplitterPossibleOfferSummary (SplitterPossibleOfferSummaryRequest) returns (OfferSummary);
 	rpc GetFeederPossibleOfferSummary (FeederPossibleOfferSummaryRequest) returns (OfferSummary);
 	rpc CreateSplitterOffer (CreateSplitterOfferRequest) returns (OfferDetails);
 	rpc CreateFeederOffer (CreateFeederOfferRequest) returns (OfferDetails);
 
+	rpc GetAllOffers (OffersRequest) returns (OffersResponse);
 	rpc GetSplitterOffers (OffersRequest) returns (OffersResponse);
 	rpc GetFeederOffers (OffersRequest) returns (OffersResponse);
 	rpc GetOfferSummary (OfferSummaryRequest) returns (OfferSummary);
@@ -23,17 +24,23 @@ service Offer{
 
 }
 
+message PossibleSplitterOffersRequest{
+	string username = 1;
+	string fsaID = 2;
+	SplitterPort splitterPort = 3;
+}
+
 message OffersRequest{
 	string username = 1;
 	string fsaID = 2;
 }
 
 message PossibleOffersResponse{
-	repeated PossibleOffer possibleOffers = 1;
+	repeated PossibleOffer possibleOffer = 1;
 }
 
 message OffersResponse{
-	repeated OfferData offers = 1;
+	repeated OfferData offer = 1;
 }
 
 message SplitterPossibleOfferSummaryRequest{
@@ -78,8 +85,8 @@ message AcceptOfferRequest{
 
 message GeoDataRequest{
 	string username = 1;
-	repeated TaskWrapper layerWiseTask = 2;
+	repeated TaskWrapper layerWiseTaskList = 2;
 }
 message GeoDataResponse{
-	repeated GeoDataWrapper geoData = 1;
+	repeated GeoDataWrapper geoDataList = 1;
 }

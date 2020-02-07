@@ -18,12 +18,14 @@ service ConsumptionBooking{
 	rpc SaveSummaryBoQForSplitterTask (SaveSummaryBoQForSplitterTaskRequest) returns (Response);
 	rpc SaveSummaryBoQForFeederTask (SaveSummaryBoQForFeederTaskRequest) returns (Response);
 	rpc GetSummaryBoQForOffer (SummaryBoQForOfferRequest) returns (BoQResponse);
+	rpc SaveSummaryBoQForOffer (SaveSummaryBoQForOfferRequest) returns (Response);
 
 	rpc GetSummarySoQForSplitterTask (SummarySoQForSplitterTaskRequest) returns (SoQResponse);
 	rpc GetSummarySoQForFeederTask (SummarySoQForFeederTaskRequest) returns (SoQResponse);
 	rpc SaveSummarySoQForSplitterTask (SaveSummarySoQForSplitterTaskRequest) returns (Response);
 	rpc SaveSummarySoQForFeederTask (SaveSummarySoQForFeederTaskRequest) returns (Response);
 	rpc GetSummarySoQForOffer (SummarySoQForOfferRequest) returns (SoQResponse);
+	rpc SaveSummarySoQForOffer (SaveSummarySoQForOfferRequest) returns (Response);
 
 	rpc GetAdditionalBoQ (AdditionalBoQRequest) returns (BoQResponse);
 	rpc GetAdditionalSoQ (AdditionalSoQRequest) returns (SoQResponse);
@@ -79,6 +81,14 @@ message SummaryBoQForOfferRequest{
 	string fsaID = 4;
 }
 
+message SaveSummaryBoQForOfferRequest{
+	string username = 1;
+	string offerCode = 2;
+	OfferCategory offerCategory = 3;
+	string fsaID = 4;
+	repeated BoQ boq = 5;
+}
+
 message SaveSummaryBoQForSplitterTaskRequest{
 	string username = 1;
 	string taskID = 2;
@@ -109,6 +119,15 @@ message SummarySoQForOfferRequest{
 	string offerCode = 2;
 	OfferCategory offerCategory = 3;
 	string fsaID = 4;
+}
+
+message SaveSummarySoQForOfferRequest{
+	string username = 1;
+	string offerCode = 2;
+	OfferCategory offerCategory = 3;
+	string fsaID = 4;
+	repeated SoQ soq = 5;
+
 }
 
 message SaveSummarySoQForSplitterTaskRequest{

@@ -2,8 +2,6 @@
 using Grpc.Core;
 using Grpc.services;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Status = Grpc.Core.Status;
 
@@ -151,8 +149,8 @@ namespace mConstructServer.services
         {
             SessionUtil.CheckSession(request.Username, MetadataUtil.GetToken(context));
 
-            if (string.IsNullOrEmpty(request.TaskID))
-                throw new RpcException(new Status(StatusCode.FailedPrecondition, String.Format("TaskID = {0}", request.TaskID)), "Task ID can not be null or empty");
+            if (request.ConstructionNotes == null)
+                throw new RpcException(new Status(StatusCode.FailedPrecondition, String.Format("ConstructionNotes = {0}", request.ConstructionNotes)), "ConstructionNotes can not be null or empty");
 
 
             return base.SaveConstructionNotes(request, context);

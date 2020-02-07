@@ -10,7 +10,7 @@ namespace mConstructServer.services
     class OfferService : Offer.OfferBase
     {
 
-        public override Task<PossibleOffersResponse> GetPossibleSplitterOffers(OffersRequest request, ServerCallContext context)
+        public override Task<PossibleOffersResponse> GetPossibleSplitterOffers(PossibleSplitterOffersRequest request, ServerCallContext context)
         {
             SessionUtil.CheckSession(request.Username, MetadataUtil.GetToken(context));
 
@@ -112,8 +112,8 @@ namespace mConstructServer.services
         {
             SessionUtil.CheckSession(request.Username, MetadataUtil.GetToken(context));
 
-            if (request.LayerWiseTask == null)
-                throw new RpcException(new Status(StatusCode.FailedPrecondition, String.Format("LayerWiseTaskList = {0}", request.LayerWiseTask)), "Task list can not be null");
+            if (request.LayerWiseTaskList == null)
+                throw new RpcException(new Status(StatusCode.FailedPrecondition, String.Format("LayerWiseTaskList = {0}", request.LayerWiseTaskList)), "Task list can not be null");
 
             return base.GetGeoDataForOfferSubTasks(request, context);
         }
